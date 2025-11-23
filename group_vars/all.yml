@@ -1,0 +1,7 @@
+# This file containes global variables
+#Zabbix HA server list
+zabbix_server_list: "10.10.10.11,10.10.10.12"
+
+# Other vars
+zabbix_agent_package: zabbix-agent
+zabbix_agent_service: zabbix-agent
