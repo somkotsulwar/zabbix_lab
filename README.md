@@ -1,6 +1,6 @@
 ### zabbix_automation_lab
 
-## Zabbix Agent — Ansible Role
+### Zabbix Agent — Ansible Role
 
 Deploy and configure **Zabbix Agent** on Linux hosts.
 
