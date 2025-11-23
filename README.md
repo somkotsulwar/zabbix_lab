@@ -1,4 +1,4 @@
-### Repo zabbix_automation_lab used for auto deploy agent and other objects in zabbix
+### Repo zabbix_automation_lab used for auto deploy agent in zabbix
 
 #### Zabbix Agent — Ansible Role
 
