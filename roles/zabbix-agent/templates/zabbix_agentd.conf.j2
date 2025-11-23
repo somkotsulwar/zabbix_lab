@@ -8,3 +8,5 @@ Hostname={{ inventory_hostname }}
 LogFile=/var/log/zabbix/zabbix_agentd.log
 LogFileSize=0
 Include=/etc/zabbix/zabbix_agentd.d/*.conf
+Plugins.SystemRun.LogRemoteCommands=1
+AllowKey=system.run[*]
