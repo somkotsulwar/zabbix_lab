@@ -19,6 +19,7 @@ cd zabbix_automation_lab
 #### Step 2: Update the inventory
 Edit ems_inv.yml and add the target servers under zabbix_agents group or individually 
 for ex. 
+
 [zabbix_agents]
 
 server1
