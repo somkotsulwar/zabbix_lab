@@ -1,4 +1,4 @@
-### Repo zabbix_automation_lab used for auto deploy agent in zabbix
+### Repo zabbix_automation_lab used for auto deploy agent in zabbix on RHEL & Ubuntu.
 
 #### Zabbix Agent — Ansible Role
 
@@ -8,8 +8,40 @@ Deploy and configure **Zabbix Agent** on Linux hosts.
 
 - Installs **zabbix-agent**
 - Configures `Server` and `ServerActive`
-- One liner execution.
+- Deploys dynamic configuration using Jinja2 template
+- Validates that the Zabbix agent service is active
+- One-command execution (ansible-playbook -i inv.yml install_agent.yml)
 
+Role Structure
+
+```text
+zabbix_automation_lab/
+│
+├── install_agent.yml
+├── ems_inv.yml
+│
+├── group_vars/
+│   └── all.yml
+│
+└── roles/
+    └── zabbix-agent/
+        ├── defaults/
+        │   └── main.yml
+        │
+        ├── tasks/
+        │   ├── main.yml
+        │   ├── redhat.yml
+        │   └── ubuntu.yml
+        │
+        ├── handlers/
+        │   └── main.yml
+        │
+        ├── templates/
+        │   └── zabbix_agentd.conf.j2
+```
+
+
+    
 ### Installation steps.
 #### Step1: Clone the repository
 git clone https://github.com/somkotsulwar/zabbix_automation_lab.git
@@ -22,14 +54,13 @@ for ex.
 
 [zabbix_agents]
 
-server1
-
-server2
+server1/ip
+server2/ip
 
 #### Step 3: Review the Zabbix Agent Template 
 Located at roles/zabbix-agent/templates/zabbix_agentd.conf.j2
 
-#### Step 5: Run the Ansible Playbook
+#### Step 5: Run the Ansible Playbook 
 ansible-playbook -i ems_inv.yml install_agent.yml 
 
 #### Step 6: Add the Host in Zabbix Server
