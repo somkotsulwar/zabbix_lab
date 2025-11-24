@@ -55,15 +55,21 @@ for ex.
 [zabbix_agents]
 
 server1/ip
+
 server2/ip
 
 #### Step 3: Review the Zabbix Agent Template 
 Located at roles/zabbix-agent/templates/zabbix_agentd.conf.j2
 
-#### Step 5: Run the Ansible Playbook 
+#### Step 4: Run the Ansible Playbook 
 ansible-playbook -i ems_inv.yml install_agent.yml 
 
-#### Step 6: Add the Host in Zabbix Server
+Once completed successfully, you should see:
+
+zabbix-agent service started and enabled
+
+
+#### Step 5: Add the Host in Zabbix Server
 
 Before the agent can appear in monitoring, you must add the host in Zabbix:
 
@@ -74,7 +80,7 @@ Before the agent can appear in monitoring, you must add the host in Zabbix:
 5. Link a template such as **Template OS Linux by Zabbix agent**, **Linux by SNMP Template**
 6. Save
 
-#### Step 7: Verify Agent Connectivity
+#### Step 6: Verify Agent Connectivity
 
 After saving, open **Monitoring → Hosts**.
 
