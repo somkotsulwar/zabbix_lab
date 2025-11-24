@@ -1,32 +1,29 @@
 ---
-- name: Install Zabbix repository
-  dnf:
-    name: "https://repo.zabbix.com/zabbix/7.4/release/rhel/9/noarch/zabbix-release-latest-7.4.el9.noarch.rpm"
-    state: present
+- name: Install Zabbix Agent - RedHat family
+  include_tasks: redhat.yml
+  when: ansible_facts.os_family == "RedHat"
 
-- name: Install Zabbix Agent package
-  dnf:
-    name: "{{ zabbix_agent_package }}"
-    state: present
-
+- name: Install Zabbix Agent - Debian family
+  include_tasks: debian.yml
+  when: ansible_facts.os_family == "Debian"
+  
 - name: Deploy Zabbix Agent configuration
   template:
     src: zabbix_agentd.conf.j2
     dest: /etc/zabbix/zabbix_agentd.conf
-  notify:
-    - restart agent
+  notify: restart agent
 
-- name: Enable & start Zabbix Agent service
+- name: Enable & start Zabbix agent
   service:
     name: "{{ zabbix_agent_service }}"
     state: started
     enabled: yes
 
-- name: Verify Zabbix agent service is active
+- name: Verify Zabbix agent is active
   command: systemctl is-active {{ zabbix_agent_service }}
   register: service_status
   failed_when: service_status.stdout != "active"
 
 - name: Debug service status
   debug:
-    msg: "Zabbix Agent service is {{ service_status.stdout }}"
+    msg: "Zabbix Agent is {{ service_status.stdout }}"
